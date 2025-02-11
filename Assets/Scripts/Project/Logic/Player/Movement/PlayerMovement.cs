@@ -40,6 +40,6 @@ namespace Project.Logic.Player.Movement
             _rigidbody2D.velocity = Vector2.zero;
 
         public void StartMoving() => 
-            _rigidbody2D.velocity = Speed * Time.deltaTime * transform.up;
+            _rigidbody2D.velocity = Speed * transform.up;
     }
 }

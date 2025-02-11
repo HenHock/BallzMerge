@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using Project.StaticData;
 using UnityEngine;
 using ILogger = Project.Infrastructure.Logger.ILogger;
 
@@ -36,5 +37,8 @@ namespace Project.Extensions
             
             source.SetPositions(positions);
         }
+
+        public static bool IsPlayer(this Component source) => 
+            source.CompareTag(Constants.PlayerTag);
     }
 }

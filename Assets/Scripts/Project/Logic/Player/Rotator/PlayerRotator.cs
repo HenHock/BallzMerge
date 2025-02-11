@@ -26,26 +26,32 @@ namespace Project.Logic.Player.Rotator
             _cachedMousePosition = _inputService.MousePosition;
             
             _aimService.OnEnabledStatusChanged
-                .Subscribe(isEnabled => enabled = isEnabled)
+                .Subscribe(SetEnabled)
                 .AddTo(this);
         }
 
         private void Update()
         {
-            if (IsMousePositionChanged())
-            {
-                _cachedMousePosition = _inputService.MousePosition;
-                Vector3 worldMousePosition = _camera.ScreenToWorldPoint(_inputService.MousePosition);
-                Vector2 direction = (worldMousePosition - transform.position).normalized;
-
-                RotateToDirection(direction);
-            }
+            if (IsMousePositionChanged()) 
+                RotateToMouse();
         }
 
-        public void RotateToDirection(Vector2 direction)
+        private void RotateToMouse()
         {
+            _cachedMousePosition = _inputService.MousePosition;
+            Vector3 worldMousePosition = _camera.ScreenToWorldPoint(_inputService.MousePosition);
+            Vector2 direction = (worldMousePosition - transform.position).normalized;
+
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle - 90));
+        }
+
+        private void SetEnabled(bool isEnabled)
+        {
+            enabled = isEnabled;
+            
+            if (enabled) 
+                RotateToMouse();
         }
 
         private bool IsMousePositionChanged() => _inputService.MousePosition != _cachedMousePosition;
