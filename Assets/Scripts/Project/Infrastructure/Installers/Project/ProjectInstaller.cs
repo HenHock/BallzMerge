@@ -2,8 +2,6 @@ using Project.Extensions;
 using Project.Infrastructure.BootStateMachine;
 using Project.Infrastructure.BootStateMachine.StateFactory;
 using Project.Infrastructure.Services.Input;
-using Project.Infrastructure.Services.SaveSystem;
-using Project.Infrastructure.Services.SaveSystem.PersistentProgressService;
 using Project.Infrastructure.Services.SceneLoader;
 using Project.Logic.Aim;
 using Project.Logic.LevelFactory;

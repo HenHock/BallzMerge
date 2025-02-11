@@ -7,7 +7,7 @@ using Project.Logic.LevelFactory;
 namespace Project.Infrastructure.BootStateMachine.States
 {
     /// <summary>
-    /// State to load gameplay scene
+    /// State to load game scene
     /// </summary>
     public class LoadGameSceneState : IState
     {
@@ -15,7 +15,6 @@ namespace Project.Infrastructure.BootStateMachine.States
         private readonly ISceneLoader _sceneLoader;
         private readonly IGameStateMachine _stateMachine;
         private readonly ILevelFactory _levelFactory;
-        private readonly IInputService _inputService;
         private readonly IAimService _aimService;
 
         public LoadGameSceneState(
@@ -23,14 +22,12 @@ namespace Project.Infrastructure.BootStateMachine.States
             ISceneLoader sceneLoader, 
             GameConfig gameConfig, 
             ILevelFactory levelFactory, 
-            IInputService inputService, 
             IAimService aimService)
         {
             _stateMachine = stateMachine;
             _sceneLoader = sceneLoader;
             _gameConfig = gameConfig;
             _levelFactory = levelFactory;
-            _inputService = inputService;
             _aimService = aimService;
         }
 
@@ -40,15 +37,10 @@ namespace Project.Infrastructure.BootStateMachine.States
 
         private void OnLoadedScene()
         {
-            InitServices();
+            _aimService.Initialize();
+            
             CreateLevel();
             Next();
-        }
-
-        private void InitServices()
-        {
-            _aimService.Initialize();
-            _inputService.EnableInputs();
         }
 
         private void CreateLevel() => _levelFactory.CreatePlayer();

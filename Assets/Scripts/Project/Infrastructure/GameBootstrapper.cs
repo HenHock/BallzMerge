@@ -5,7 +5,6 @@ using Project.Infrastructure.BootStateMachine.States;
 using Zenject;
 using UnityEngine;
 using ILogger = Project.Infrastructure.Logger.ILogger;
-using Project.Infrastructure.Services.SaveSystem;
 
 namespace Project.Infrastructure
 {
@@ -33,6 +32,7 @@ namespace Project.Infrastructure
             _gameStateMachine.RegisterState(_stateFactory.Create<BootstrapState>());
             _gameStateMachine.RegisterState(_stateFactory.Create<LoadGameSceneState>());
             _gameStateMachine.RegisterState(_stateFactory.Create<StartGameRoundState>());
+            _gameStateMachine.RegisterState(_stateFactory.Create<LoopGameRoundState>());
 
             this.Log("Initialized GameStateMachine");
 

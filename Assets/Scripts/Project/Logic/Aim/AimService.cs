@@ -1,13 +1,18 @@
 ﻿using Project.Extensions;
 using Project.Logic.LevelFactory;
 using Project.Infrastructure.Services.Input;
+using Project.Logic.Aim.Data;
+using UniRx;
 using UnityEngine;
-using UnityEngine.Rendering;
+using Zenject;
 
 namespace Project.Logic.Aim
 {
     public class AimService : IAimService
     {
+        public bool IsEnabled { get; private set; }
+        public ReactiveCommand<bool> OnEnabledStatusChanged { get; } = new();
+
         private readonly IInputService _inputService;
         private readonly ILevelFactory _levelFactory;
         private readonly AimConfig _aimConfig;
@@ -25,7 +30,13 @@ namespace Project.Logic.Aim
         {
             _camera = Camera.main;
         }
-        
+
+        public void SetEnable(bool isEnabled)
+        {
+            IsEnabled = isEnabled;
+            OnEnabledStatusChanged?.Execute(isEnabled);
+        }
+
         public Vector2[] CalculateAimPoints()
         {
             Vector2 startPoint = _levelFactory.PlayerTransform.position;
@@ -37,7 +48,7 @@ namespace Project.Logic.Aim
             if (raycastHit2D.transform != null)
             {
                 middlePoint = raycastHit2D.point;
-                endPoint = middlePoint + MathExtensions.CalculateReflectDirection(startPoint, middlePoint) * _aimConfig.MaxDistance / 2;
+                endPoint = middlePoint + MathExtensions.CalculateReflectDirection( startPoint, middlePoint) * _aimConfig.MaxDistance / 2;
             }
 
             return new[] { startPoint, middlePoint, endPoint };

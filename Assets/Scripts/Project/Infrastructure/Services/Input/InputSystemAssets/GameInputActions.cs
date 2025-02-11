@@ -35,6 +35,15 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Click"",
+                    ""type"": ""Button"",
+                    ""id"": ""c5b765ac-0e0a-4864-9d80-d4c68d3ab07f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -59,6 +68,28 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
                     ""action"": ""Position"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""83857d6d-62af-41dc-8bf3-1b41ecded344"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Click"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9236cafe-1222-44d1-8179-6d916e37cf60"",
+                    ""path"": ""<Pointer>/press"",
+                    ""interactions"": ""Press(behavior=1)"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Click"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -68,6 +99,7 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
         // Mouse
         m_Mouse = asset.FindActionMap("Mouse", throwIfNotFound: true);
         m_Mouse_Position = m_Mouse.FindAction("Position", throwIfNotFound: true);
+        m_Mouse_Click = m_Mouse.FindAction("Click", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -130,11 +162,13 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Mouse;
     private List<IMouseActions> m_MouseActionsCallbackInterfaces = new List<IMouseActions>();
     private readonly InputAction m_Mouse_Position;
+    private readonly InputAction m_Mouse_Click;
     public struct MouseActions
     {
         private @GameInputActions m_Wrapper;
         public MouseActions(@GameInputActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Position => m_Wrapper.m_Mouse_Position;
+        public InputAction @Click => m_Wrapper.m_Mouse_Click;
         public InputActionMap Get() { return m_Wrapper.m_Mouse; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -147,6 +181,9 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
             @Position.started += instance.OnPosition;
             @Position.performed += instance.OnPosition;
             @Position.canceled += instance.OnPosition;
+            @Click.started += instance.OnClick;
+            @Click.performed += instance.OnClick;
+            @Click.canceled += instance.OnClick;
         }
 
         private void UnregisterCallbacks(IMouseActions instance)
@@ -154,6 +191,9 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
             @Position.started -= instance.OnPosition;
             @Position.performed -= instance.OnPosition;
             @Position.canceled -= instance.OnPosition;
+            @Click.started -= instance.OnClick;
+            @Click.performed -= instance.OnClick;
+            @Click.canceled -= instance.OnClick;
         }
 
         public void RemoveCallbacks(IMouseActions instance)
@@ -174,5 +214,6 @@ public partial class @GameInputActions: IInputActionCollection2, IDisposable
     public interface IMouseActions
     {
         void OnPosition(InputAction.CallbackContext context);
+        void OnClick(InputAction.CallbackContext context);
     }
 }

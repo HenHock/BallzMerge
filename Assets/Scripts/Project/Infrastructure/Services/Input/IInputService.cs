@@ -10,6 +10,12 @@ namespace Project.Infrastructure.Services.Input
         /// </summary>
         Vector2 MousePosition { get; }
         
+        /// <summary>
+        /// Invoked when player clicked
+        /// </summary>
+        /// <param name="MousePosition">Mouse position in screen space</param>
+        ReactiveCommand<Vector2> OnClick { get; }
+
         void EnableInputs();
         void DisableInputs();
     }

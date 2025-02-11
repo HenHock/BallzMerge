@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Project.Logic.Aim
+namespace Project.Logic.Aim.Data
 {
     [CreateAssetMenu(menuName = "Configs/AimConfig", fileName = "AimConfig")]
     public class AimConfig : ScriptableObject
