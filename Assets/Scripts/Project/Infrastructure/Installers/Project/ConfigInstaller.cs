@@ -1,8 +1,9 @@
+using Project.Balance;
 using Project.Extensions;
-using Project.Logic.Aim;
 using Project.Logic.Aim.Data;
+using Project.Logic.Block.Data;
+using Project.Logic.Grid.Data;
 using Project.Logic.LevelFactory.Data;
-using Project.Logic.Player;
 using Project.Logic.Player.Data;
 using UnityEngine;
 using Zenject;
@@ -20,6 +21,10 @@ namespace Project.Infrastructure.Installers.Project
         [SerializeField] private LevelConfig levelConfig;
         [SerializeField] private AimConfig aimConfig;
         [SerializeField] private PlayerConfig playerConfig;
+        [SerializeField] private TileMapConfig tileMapConfig;
+        [SerializeField] private RoundDropConfigs roundDropConfigs;
+        [SerializeField] private RoundNumberConfigs roundNumberConfigs;
+        [SerializeField] private BlockColorConfig blockColorConfig;
         
         public Color DefaultColor => Color.green;
 
@@ -27,7 +32,11 @@ namespace Project.Infrastructure.Installers.Project
         {
             this.Log("Start bind configs");
 
-            Container.BindInstances(gameConfig, levelConfig, aimConfig, playerConfig);
+            Container.BindInstances
+            (
+                gameConfig, levelConfig, aimConfig, playerConfig, tileMapConfig,
+                roundDropConfigs, roundNumberConfigs, blockColorConfig
+            );
 
             this.Log("Completed bind configs");
         }

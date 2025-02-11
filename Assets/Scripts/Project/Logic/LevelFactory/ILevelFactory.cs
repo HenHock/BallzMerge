@@ -6,5 +6,6 @@ namespace Project.Logic.LevelFactory
     {
         Transform PlayerTransform { get; }
         void CreatePlayer();
+        void CreateBlocks();
     }
 }

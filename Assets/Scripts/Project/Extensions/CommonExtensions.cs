@@ -28,7 +28,16 @@ namespace Project.Extensions
 
         public static Vector3 ToVector3(this Vector2 source) => source;
         public static Vector2 ToVector2(this Vector3 source) => source;
-        
+
+        /// <summary>
+        /// Checks if a given value falls within the inclusive range defined by this Vector2Int.
+        /// </summary>
+        /// <param name="source">The Vector2Int representing the range, where x is the minimum and y is the maximum.</param>
+        /// <param name="value">The value to check against the range.</param>
+        /// <returns>True if the value is within the range (inclusive), otherwise false.</returns>
+        public static bool InRange(this Vector2Int source, int value) => 
+            value >= source.x && value <= source.y;
+
         public static void SetPositions(this LineRenderer source, Vector2[] points)
         {
             Vector3[] positions = points

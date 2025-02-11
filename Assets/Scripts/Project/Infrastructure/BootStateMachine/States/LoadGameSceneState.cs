@@ -2,6 +2,7 @@ using Project.Infrastructure.BootStateMachine.States.Interfaces;
 using Project.Infrastructure.Services.Input;
 using Project.Infrastructure.Services.SceneLoader;
 using Project.Logic.Aim;
+using Project.Logic.Grid;
 using Project.Logic.LevelFactory;
 
 namespace Project.Infrastructure.BootStateMachine.States
@@ -16,19 +17,22 @@ namespace Project.Infrastructure.BootStateMachine.States
         private readonly IGameStateMachine _stateMachine;
         private readonly ILevelFactory _levelFactory;
         private readonly IAimService _aimService;
+        private readonly ITileGridMap _tileGridMap;
 
         public LoadGameSceneState(
             IGameStateMachine stateMachine, 
             ISceneLoader sceneLoader, 
             GameConfig gameConfig, 
             ILevelFactory levelFactory, 
-            IAimService aimService)
+            IAimService aimService,
+            ITileGridMap tileGridMap)
         {
             _stateMachine = stateMachine;
             _sceneLoader = sceneLoader;
             _gameConfig = gameConfig;
             _levelFactory = levelFactory;
             _aimService = aimService;
+            _tileGridMap = tileGridMap;
         }
 
         public void Enter() => _sceneLoader.Load(_gameConfig.GameplayScene, OnLoadedScene);
@@ -38,11 +42,16 @@ namespace Project.Infrastructure.BootStateMachine.States
         private void OnLoadedScene()
         {
             _aimService.Initialize();
+            _tileGridMap.Initialize();
             
             CreateLevel();
             Next();
         }
 
-        private void CreateLevel() => _levelFactory.CreatePlayer();
+        private void CreateLevel()
+        {
+            _levelFactory.CreatePlayer();
+            _levelFactory.CreateBlocks();
+        }
     }
 }

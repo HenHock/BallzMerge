@@ -16,3 +16,7 @@ MonoBehaviour:
   levelConfig: {fileID: 11400000, guid: 3fc80df6af81d8b4589692a3ef857906, type: 2}
   aimConfig: {fileID: 11400000, guid: 6bca1be81dd106644a693c8707c8e23c, type: 2}
   playerConfig: {fileID: 11400000, guid: 0bb56e35885b38d4eb87f931ac67c983, type: 2}
+  tileMapConfig: {fileID: 11400000, guid: d9f8ef6999150ca4ca4077d7dc068d96, type: 2}
+  roundDropConfigs: {fileID: 11400000, guid: 930c6a2a845c7034e84f5d003623f792, type: 2}
+  roundNumberConfigs: {fileID: 11400000, guid: d9ccdd4035375fb4a959d53efe019dfc, type: 2}
+  blockColorConfig: {fileID: 11400000, guid: 92649e77f8204d44fbfe43e92c8cc87a, type: 2}

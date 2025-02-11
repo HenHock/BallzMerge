@@ -11,7 +11,12 @@ namespace Project.Logic.LevelFactory.Data
         [BoxGroup("Ball")]
         public GameObject PlayerPrefab;
         [BoxGroup("Ball")]
-        public Vector3 PlayerSpawnPosition;
+        public Vector2 PlayerSpawnPosition;
+
+        [BoxGroup("Grid")]
+        public Vector2 GridStartPoint;
+        [BoxGroup("Block")]
+        public GameObject BlockPrefab;
 
         [Button]
         private void Fill()
