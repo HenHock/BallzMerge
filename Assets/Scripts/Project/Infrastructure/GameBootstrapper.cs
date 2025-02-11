@@ -32,7 +32,7 @@ namespace Project.Infrastructure
 
             _gameStateMachine.RegisterState(_stateFactory.Create<BootstrapState>());
             _gameStateMachine.RegisterState(_stateFactory.Create<LoadGameSceneState>());
-            _gameStateMachine.RegisterState(_stateFactory.Create<LoopGameplayState>());
+            _gameStateMachine.RegisterState(_stateFactory.Create<StartGameRoundState>());
 
             this.Log("Initialized GameStateMachine");
 

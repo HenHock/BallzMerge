@@ -5,6 +5,8 @@ using Project.Infrastructure.Services.Input;
 using Project.Infrastructure.Services.SaveSystem;
 using Project.Infrastructure.Services.SaveSystem.PersistentProgressService;
 using Project.Infrastructure.Services.SceneLoader;
+using Project.Logic.Aim;
+using Project.Logic.LevelFactory;
 using UnityEngine;
 using Zenject;
 using ILogger = Project.Infrastructure.Logger.ILogger;
@@ -25,9 +27,16 @@ namespace Project.Infrastructure.Installers.Project
             BindSceneLoader();
             BindStateFactory();
             BindGameStateMachine();
+            BindInputService();
+            BindLevelFactory();
+            BindAimService();
 
             this.Log("Completed bind game services");
         }
+
+        private void BindInputService() => Container
+            .BindInterfacesAndSelfTo<InputService>()
+            .AsSingle();
 
         private void BindSceneLoader() => Container
             .BindInterfacesAndSelfTo<SceneLoader>()
@@ -39,6 +48,14 @@ namespace Project.Infrastructure.Installers.Project
 
         private void BindGameStateMachine() => Container
             .BindInterfacesAndSelfTo<GameStateMachine>()
+            .AsSingle();
+
+        private void BindLevelFactory() => Container
+            .BindInterfacesAndSelfTo<LevelFactory>()
+            .AsSingle();
+
+        private void BindAimService() => Container
+            .BindInterfacesAndSelfTo<AimService>()
             .AsSingle();
     }
 }

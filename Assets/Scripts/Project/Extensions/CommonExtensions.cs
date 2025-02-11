@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using UnityEngine;
 using ILogger = Project.Infrastructure.Logger.ILogger;
 
@@ -23,5 +24,17 @@ namespace Project.Extensions
 
         public static string ToJson<TClass>(this TClass source) where TClass : class => JsonUtility.ToJson(source);
         public static TClass FromJson<TClass>(this string source) => JsonUtility.FromJson<TClass>(source);
+
+        public static Vector3 ToVector3(this Vector2 source) => source;
+        public static Vector2 ToVector2(this Vector3 source) => source;
+        
+        public static void SetPositions(this LineRenderer source, Vector2[] points)
+        {
+            Vector3[] positions = points
+                .Select(p => p.ToVector3())
+                .ToArray();
+            
+            source.SetPositions(positions);
+        }
     }
 }

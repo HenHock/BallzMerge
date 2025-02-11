@@ -1,4 +1,6 @@
 using Project.Extensions;
+using Project.Logic.Aim;
+using Project.Logic.LevelFactory.Data;
 using UnityEngine;
 using Zenject;
 using ILogger = Project.Infrastructure.Logger.ILogger;
@@ -12,6 +14,8 @@ namespace Project.Infrastructure.Installers.Project
     public class ConfigInstaller : ScriptableObjectInstaller, ILogger
     {
         [SerializeField] private GameConfig gameConfig;
+        [SerializeField] private LevelConfig levelConfig;
+        [SerializeField] private AimConfig aimConfig;
         
         public Color DefaultColor => Color.green;
 
@@ -19,7 +23,7 @@ namespace Project.Infrastructure.Installers.Project
         {
             this.Log("Start bind configs");
 
-            Container.BindInstances(gameConfig);
+            Container.BindInstances(gameConfig, levelConfig, aimConfig);
 
             this.Log("Completed bind configs");
         }

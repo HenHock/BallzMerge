@@ -13,3 +13,5 @@ MonoBehaviour:
   m_Name: ConfigInstaller
   m_EditorClassIdentifier: 
   gameConfig: {fileID: 11400000, guid: 92fd0801fa7d7f147a0a32f255e8fb9c, type: 2}
+  levelConfig: {fileID: 11400000, guid: 3fc80df6af81d8b4589692a3ef857906, type: 2}
+  aimConfig: {fileID: 11400000, guid: 6bca1be81dd106644a693c8707c8e23c, type: 2}
