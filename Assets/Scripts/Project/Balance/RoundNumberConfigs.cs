@@ -9,8 +9,16 @@ namespace Project.Balance
     {
         [SerializeField] private RoundNumberData[] configs;
 
-        public Vector2Int GetPossibleNumber(int currentRound) => 
-            configs.FirstOrDefault(config => config.RoundRange.InRange(currentRound))
-                .BlockNumberRange;
+        public Vector2Int GetPossibleNumber(int currentRound)
+        {
+            RoundNumberData roundNumberData = configs.FirstOrDefault(config => config.RoundRange.InRange(currentRound));
+
+            return IsDefault(roundNumberData)
+                ? configs.Last().BlockNumberRange
+                : roundNumberData.BlockNumberRange;
+        }
+
+        private bool IsDefault(RoundNumberData roundNumberData) => 
+            roundNumberData.BlockNumberRange == default;
     }
 }

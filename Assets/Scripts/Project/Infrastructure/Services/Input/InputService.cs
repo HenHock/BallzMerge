@@ -1,6 +1,6 @@
 ﻿using UniRx;
 using UnityEngine;
-using UnityEngine.InputSystem;
+using UnityEngine.EventSystems;
 
 namespace Project.Infrastructure.Services.Input
 {
@@ -18,11 +18,15 @@ namespace Project.Infrastructure.Services.Input
 
             Observable.EveryUpdate()
                 .Where(_ => _gameInputActions.Mouse.Click.WasReleasedThisFrame())
+                .Where(_ => !IsPointerOverUI())
                 .Subscribe(_ => OnClick?.Execute(MousePosition));
         }
 
         public void EnableInputs() => _gameInputActions.Enable();
 
         public void DisableInputs() => _gameInputActions.Disable();
+
+        private bool IsPointerOverUI() => 
+            _gameInputActions.asset.enabled && EventSystem.current.IsPointerOverGameObject();
     }
 }

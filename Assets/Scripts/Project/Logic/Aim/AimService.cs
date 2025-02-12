@@ -44,7 +44,7 @@ namespace Project.Logic.Aim
             Vector2 endPoint = startPoint + direction * _aimConfig.MaxDistance;
             Vector2 middlePoint = endPoint;
 
-            RaycastHit2D raycastHit2D = Physics2D.Raycast(startPoint, direction, _aimConfig.MaxDistance, _aimConfig.HitLayerMask);
+            RaycastHit2D raycastHit2D = Physics2D.CircleCast(startPoint, 0.5f, direction, _aimConfig.MaxDistance, _aimConfig.HitLayerMask);
             if (raycastHit2D.transform != null)
             {
                 middlePoint = raycastHit2D.point;

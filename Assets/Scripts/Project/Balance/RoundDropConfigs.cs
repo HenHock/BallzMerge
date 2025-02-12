@@ -13,8 +13,13 @@ namespace Project.Balance
 
         [SerializeField] private RoundDropData[] configs;
 
-        public DropChanceData[] GetNumberChances(int currentRound) => 
-            configs.FirstOrDefault(config => config.RoundRange.InRange(currentRound))
-                .DropData;
+        public DropChanceData[] GetNumberChances(int currentRound)
+        {
+            RoundDropData roundDropData = configs.FirstOrDefault(config => config.RoundRange.InRange(currentRound));
+            return IsDefault(roundDropData) ? configs.Last().DropData : roundDropData.DropData;
+        }
+
+        private bool IsDefault(RoundDropData roundDropData) => 
+            roundDropData.RoundRange == default;
     }
 }
