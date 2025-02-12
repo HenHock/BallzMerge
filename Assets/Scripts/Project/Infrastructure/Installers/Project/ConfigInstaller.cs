@@ -3,6 +3,7 @@ using Project.Extensions;
 using Project.Logic.Aim.Data;
 using Project.Logic.Block.Data;
 using Project.Logic.Player.Data;
+using Project.Services.AudioPlayer;
 using Project.Services.Grid.Data;
 using Project.Services.LevelFactory.Data;
 using Project.Services.Windows.Data;
@@ -27,6 +28,7 @@ namespace Project.Infrastructure.Installers.Project
         [SerializeField] private RoundNumberConfigs roundNumberConfigs;
         [SerializeField] private BlockColorConfig blockColorConfig;
         [SerializeField] private WindowConfigs windowConfigs;
+        [SerializeField] private AudioConfig audioConfig;
         
         public Color DefaultColor => Color.green;
 
@@ -37,7 +39,8 @@ namespace Project.Infrastructure.Installers.Project
             Container.BindInstances
             (
                 gameConfig, levelConfig, aimConfig, playerConfig, tileMapConfig,
-                roundDropConfigs, roundNumberConfigs, blockColorConfig, windowConfigs
+                roundDropConfigs, roundNumberConfigs, blockColorConfig, windowConfigs,
+                audioConfig
             );
 
             this.Log("Completed bind configs");

@@ -26,7 +26,8 @@ namespace Project.Infrastructure.BootStateMachine.States
         public void Enter()
         {
             MoveAllBlocksDown();
-
+            ResolveBlocksMerge();
+            
             if (_tileGridMap.IsCrossedLastRow())
                 _stateMachine.Enter<GameOverState>();
             else Next();
@@ -38,6 +39,12 @@ namespace Project.Infrastructure.BootStateMachine.States
         {
             foreach (BlockBehavior block in _blocksProvider.Blocks) 
                 block.BlockMovement.MoveTo(DirectionType.Down);
+        }
+
+        private void ResolveBlocksMerge()
+        {
+            foreach (BlockBehavior block in _blocksProvider.Blocks) 
+                block.ResolveMerge();
         }
     }
 }

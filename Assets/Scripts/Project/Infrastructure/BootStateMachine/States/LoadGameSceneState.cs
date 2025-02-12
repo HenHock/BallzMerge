@@ -2,6 +2,7 @@ using Project.Infrastructure.BootStateMachine.States.Interfaces;
 using Project.Infrastructure.Services.Input;
 using Project.Infrastructure.Services.SceneLoader;
 using Project.Logic.Aim;
+using Project.Services.AudioPlayer;
 using Project.Services.Grid;
 using Project.Services.LevelFactory;
 using Project.Services.UIFactory;
@@ -21,6 +22,7 @@ namespace Project.Infrastructure.BootStateMachine.States
         private readonly IAimService _aimService;
         private readonly ITileGridMap _tileGridMap;
         private readonly IUIFactory _uiFactory;
+        private readonly IAudioPlayer _audioPlayer;
 
         public LoadGameSceneState(
             IGameStateMachine stateMachine, 
@@ -29,7 +31,8 @@ namespace Project.Infrastructure.BootStateMachine.States
             ILevelFactory levelFactory, 
             IAimService aimService,
             ITileGridMap tileGridMap,
-            IUIFactory uiFactory)
+            IUIFactory uiFactory,
+            IAudioPlayer audioPlayer)
         {
             _stateMachine = stateMachine;
             _sceneLoader = sceneLoader;
@@ -38,6 +41,7 @@ namespace Project.Infrastructure.BootStateMachine.States
             _aimService = aimService;
             _tileGridMap = tileGridMap;
             _uiFactory = uiFactory;
+            _audioPlayer = audioPlayer;
         }
 
         public void Enter() => _sceneLoader.Load(_gameConfig.GameplayScene, OnLoadedScene);
@@ -48,6 +52,7 @@ namespace Project.Infrastructure.BootStateMachine.States
         {
             _aimService.Initialize();
             _tileGridMap.Initialize();
+            _audioPlayer.Initialize();
             _uiFactory.CreateUIRoot();
             
             CreateLevel();

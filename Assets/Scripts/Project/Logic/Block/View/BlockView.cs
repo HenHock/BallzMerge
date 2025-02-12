@@ -7,12 +7,12 @@ namespace Project.Logic.Block.View
     public class BlockView : MonoBehaviour
     {
         [SerializeField] private SpriteRenderer spriteRenderer;
-        [SerializeField] private TMP_Text NumberTMP;
+        [SerializeField] private TMP_Text numberTMP;
         
         public void Initialize(int number, Color color)
         {
             spriteRenderer.color = color;
-            NumberTMP.text = number.ToString();
+            numberTMP.text = number.ToString();
 
             PlayAppearTween();
         }
@@ -27,7 +27,7 @@ namespace Project.Logic.Block.View
                 .Play();
         }
 
-        public void PlayDistroyTween() =>
+        public void PlayDestroyTween() =>
             transform.DOScale(Vector2.zero, 0.5f)
                 .SetEase(Ease.InBounce)
                 .OnComplete(() => Destroy(gameObject))

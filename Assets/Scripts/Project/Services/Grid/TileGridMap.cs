@@ -23,9 +23,9 @@ namespace Project.Services.Grid
 
         public void Initialize()
         {
-            Tiles = TileMapGenerator.CreateMap(_tileMapConfig, _levelConfig.GridStartPoint);
+            Tiles ??= TileMapGenerator.CreateMap(_tileMapConfig, _levelConfig.GridStartPoint);
             
-            _directions = new Dictionary<DirectionType, (int, int)>
+            _directions ??= new Dictionary<DirectionType, (int, int)>
             {
                 [DirectionType.Left] = (-1, 0),
                 [DirectionType.Right] = (1, 0),
@@ -65,6 +65,15 @@ namespace Project.Services.Grid
             
             return Tiles[nextRow][nextColumn];
         }
+
+        public Tile[] GetTilesAround(TileID tileID) =>
+            new[]
+            {
+                GetNextTile(tileID, DirectionType.Down),
+                GetNextTile(tileID, DirectionType.Up),
+                GetNextTile(tileID, DirectionType.Right),
+                GetNextTile(tileID, DirectionType.Left),
+            };
 
         public bool IsCrossedLastRow() => Tiles[0].Any(tile => !tile.IsEmpty);
     }

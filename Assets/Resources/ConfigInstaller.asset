@@ -21,3 +21,4 @@ MonoBehaviour:
   roundNumberConfigs: {fileID: 11400000, guid: d9ccdd4035375fb4a959d53efe019dfc, type: 2}
   blockColorConfig: {fileID: 11400000, guid: 92649e77f8204d44fbfe43e92c8cc87a, type: 2}
   windowConfigs: {fileID: 11400000, guid: a979c45e2ba84c046a2c304c1e8ce11c, type: 2}
+  audioConfig: {fileID: 11400000, guid: 9268fa887e266e04d85a992b5b5091c7, type: 2}

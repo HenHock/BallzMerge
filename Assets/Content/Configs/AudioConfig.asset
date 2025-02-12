@@ -9,14 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae2382d367374ee587cd6b9328eff8b8, type: 3}
-  m_Name: RoundDropConfigs
+  m_Script: {fileID: 11500000, guid: 69d35ee0da5f43f7b476a21c0a1ef9bc, type: 3}
+  m_Name: AudioConfig
   m_EditorClassIdentifier: 
-  BlockPerRound: {x: 1, y: 4}
-  configs:
-  - RoundRange: {x: 1, y: 5}
-    DropData:
-    - Number: 1
-      Chance: 0.6
-    - Number: 2
-      Chance: 0.4
+  BallHitClip: {fileID: 8300000, guid: 4cecffe102e15754888f95bf574c2432, type: 3}
+  DestroyBlockClip: {fileID: 8300000, guid: 79dff4420e22f7c4db0b49dc2df29162, type: 3}

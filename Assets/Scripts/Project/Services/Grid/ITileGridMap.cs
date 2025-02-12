@@ -10,5 +10,6 @@ namespace Project.Services.Grid
         Tile GetTile(TileID tileID);
         Tile GetNextTile(TileID currentTile, DirectionType directionType);
         bool IsCrossedLastRow();
+        Tile[] GetTilesAround(TileID tileID);
     }
 }

@@ -8,6 +8,7 @@ using Project.Infrastructure.Services.SceneLoader;
 using Project.Logic;
 using Project.Logic.Aim;
 using Project.Logic.Block;
+using Project.Services.AudioPlayer;
 using Project.Services.BlockProvider;
 using Project.Services.GameSpeed;
 using Project.Services.Grid;
@@ -46,6 +47,7 @@ namespace Project.Infrastructure.Installers.Project
             BindGameSpeedService();
             BindWindowService();
             BindUIFactory();
+            BindAudioPlayer();
 
             this.Log("Completed bind game services");
         }
@@ -104,6 +106,10 @@ namespace Project.Infrastructure.Installers.Project
 
         private void BindUIFactory() => Container
             .BindInterfacesAndSelfTo<UIFactory>()
+            .AsSingle();
+
+        private void BindAudioPlayer() => Container
+            .BindInterfacesAndSelfTo<AudioPlayer>()
             .AsSingle();
     }
 }

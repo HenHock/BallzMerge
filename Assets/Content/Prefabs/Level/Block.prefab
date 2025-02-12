@@ -430,7 +430,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 2232662311574311979}
-  NumberTMP: {fileID: 2949035474509888358}
+  numberTMP: {fileID: 2949035474509888358}
 --- !u!114 &6658012531482278577
 MonoBehaviour:
   m_ObjectHideFlags: 0

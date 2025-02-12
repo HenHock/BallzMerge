@@ -8,7 +8,7 @@ using Zenject;
 namespace Project.Logic.Player.Movement
 {
     [RequireComponent(typeof(Rigidbody2D))]
-    public class PlayerMovement : MonoBehaviour, IPlayerMovement
+    public class PlayerMovement : MonoBehaviour
     {
         [ShowNativeProperty]
         public float Speed => _playerConfig?.Speed ?? 0f;

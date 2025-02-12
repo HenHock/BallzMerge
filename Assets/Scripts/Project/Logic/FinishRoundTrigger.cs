@@ -23,7 +23,7 @@ namespace Project.Logic
                     return;
                 
                 other.attachedRigidbody
-                    .GetComponent<IPlayerMovement>()
+                    .GetComponent<PlayerMovement>()
                     .StopMoving();
 
                 _gameStateMachine.CurrentState.Value.Next();         
