@@ -1,19 +1,22 @@
-﻿using System.Runtime.CompilerServices;
-using Project.Logic.Grid;
-using Project.Logic.Block;
+﻿using Project.Logic.Block;
 using Project.Infrastructure.BootStateMachine.States.Interfaces;
-using Project.Logic.BlockProvider;
-using Project.Logic.Grid.Data;
+using Project.Logic;
+using Project.Services.BlockProvider;
+using Project.Services.Grid;
+using Project.Services.Grid.Data;
 
 namespace Project.Infrastructure.BootStateMachine.States
 {
     public class FinishGameRoundState : IState
     {
-        private readonly IBlocksProvider _blocksProvider;
         private readonly ITileGridMap _tileGridMap;
         private readonly IGameStateMachine _stateMachine;
+        private readonly IBlocksProvider _blocksProvider;
 
-        public FinishGameRoundState(IGameStateMachine stateMachine, IBlocksProvider blocksProvider, ITileGridMap tileGridMap)
+        public FinishGameRoundState(
+            IGameStateMachine stateMachine, 
+            IBlocksProvider blocksProvider, 
+            ITileGridMap tileGridMap)
         {
             _stateMachine = stateMachine;
             _blocksProvider = blocksProvider;

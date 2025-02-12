@@ -26,7 +26,7 @@ namespace Project.Logic
                     .GetComponent<IPlayerMovement>()
                     .StopMoving();
 
-                _gameStateMachine.Enter<FinishGameRoundState>();         
+                _gameStateMachine.CurrentState.Value.Next();         
             }
         }
     }

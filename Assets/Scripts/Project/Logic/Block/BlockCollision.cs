@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using Project.Extensions;
-using Project.Logic.Grid.Data;
+using Project.Services.Grid.Data;
 
 namespace Project.Logic.Block
 {
@@ -14,7 +14,6 @@ namespace Project.Logic.Block
 
         private void OnCollisionEnter2D(Collision2D other)
         {
-            Debug.Log($"Collide with {other.gameObject.name}");
             if (other.transform.IsPlayer())
             {
                 Vector3 direction = (transform.position - other.transform.position).normalized;

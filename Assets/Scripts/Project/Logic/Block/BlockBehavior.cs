@@ -1,9 +1,9 @@
 ﻿using DG.Tweening;
 using Project.Extensions;
 using Project.Logic.Block.View;
-using Project.Logic.BlockProvider;
-using Project.Logic.Grid;
-using Project.Logic.Grid.Data;
+using Project.Services.BlockProvider;
+using Project.Services.Grid;
+using Project.Services.Grid.Data;
 using UnityEngine;
 using Zenject;
 

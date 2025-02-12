@@ -1,7 +1,7 @@
 ﻿using Project.Extensions;
-using Project.Logic.LevelFactory;
 using Project.Infrastructure.Services.Input;
 using Project.Logic.Aim.Data;
+using Project.Services.LevelFactory;
 using UniRx;
 using UnityEngine;
 using Zenject;

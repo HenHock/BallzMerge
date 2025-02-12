@@ -6,19 +6,11 @@ namespace Project.Infrastructure.BootStateMachine.States
     {
         private readonly IGameStateMachine _stateMachine;
 
-        public LoopGameRoundState(IGameStateMachine stateMachine)
-        {
+        public LoopGameRoundState(IGameStateMachine stateMachine) => 
             _stateMachine = stateMachine;
-        }
 
-        public void Enter()
-        {
-            
-        }
+        public void Enter() {}
 
-        public void Next()
-        {
-            
-        }
+        public void Next() => _stateMachine.Enter<FinishGameRoundState>();
     }
 }

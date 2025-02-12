@@ -5,11 +5,16 @@ using Project.Infrastructure.Services.Input;
 using Project.Infrastructure.Services.SaveSystem;
 using Project.Infrastructure.Services.SaveSystem.PersistentProgressService;
 using Project.Infrastructure.Services.SceneLoader;
+using Project.Logic;
 using Project.Logic.Aim;
 using Project.Logic.Block;
-using Project.Logic.BlockProvider;
-using Project.Logic.Grid;
-using Project.Logic.LevelFactory;
+using Project.Services.BlockProvider;
+using Project.Services.GameSpeed;
+using Project.Services.Grid;
+using Project.Services.LevelFactory;
+using Project.Services.RoundProgressProvider;
+using Project.Services.UIFactory;
+using Project.Services.Windows;
 using UnityEngine;
 using Zenject;
 using ILogger = Project.Infrastructure.Logger.ILogger;
@@ -37,6 +42,10 @@ namespace Project.Infrastructure.Installers.Project
             BindBlocksProvider();
             BindSaveLoadService();
             BindPersistentProgress();
+            BindRoundProgress();
+            BindGameSpeedService();
+            BindWindowService();
+            BindUIFactory();
 
             this.Log("Completed bind game services");
         }
@@ -79,6 +88,22 @@ namespace Project.Infrastructure.Installers.Project
 
         private void BindPersistentProgress() => Container
             .BindInterfacesAndSelfTo<PersistentProgressService>()
+            .AsSingle();
+
+        private void BindRoundProgress() => Container
+            .BindInterfacesAndSelfTo<RoundProgressProvider>()
+            .AsSingle();
+
+        private void BindGameSpeedService() => Container
+            .BindInterfacesAndSelfTo<GameSpeedService>()
+            .AsSingle();
+
+        private void BindWindowService() => Container
+            .BindInterfacesAndSelfTo<WindowService>()
+            .AsSingle();
+
+        private void BindUIFactory() => Container
+            .BindInterfacesAndSelfTo<UIFactory>()
             .AsSingle();
     }
 }
