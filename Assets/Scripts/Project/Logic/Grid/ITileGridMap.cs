@@ -8,7 +8,7 @@ namespace Project.Logic.Grid
         Tile[][] Tiles { get; }
         Tile GetRandomEmptyTile(int row);
         Tile GetTile(TileID tileID);
-        Tile GetNextTile(Tile currentTile, DirectionType directionType);
+        Tile GetNextTile(TileID currentTile, DirectionType directionType);
         bool IsCrossedLastRow();
     }
 }

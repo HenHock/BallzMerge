@@ -5,9 +5,11 @@ using Project.Balance;
 using Project.Extensions;
 using Project.Logic.Block;
 using Project.Logic.Block.Data;
+using Project.Logic.BlockProvider;
 using Project.Logic.Grid;
 using Project.Logic.Grid.Data;
 using Project.Logic.LevelFactory.Data;
+using Unity.Mathematics;
 using UnityEngine;
 using Zenject;
 using ILogger = Project.Infrastructure.Logger.ILogger;
@@ -21,10 +23,10 @@ namespace Project.Logic.LevelFactory
         public Color DefaultColor => Color.red;
         
         public Transform PlayerTransform { get; private set; }
-        public List<BlockMovement> Blocks { get; private set; }
 
         private readonly LevelConfig _levelConfig;
         private readonly ITileGridMap _tileGridMap;
+        private readonly IBlocksProvider _blocksProvider;
         private readonly IInstantiator _instantiator;
         private readonly RoundDropConfigs _roundDropConfigs;
         private readonly RoundNumberConfigs _roundNumberConfigs;
@@ -36,7 +38,8 @@ namespace Project.Logic.LevelFactory
             RoundDropConfigs roundDropConfigs, 
             RoundNumberConfigs roundNumberConfigs,
             BlockColorConfig blockColorConfig,
-            ITileGridMap tileGridMap)
+            ITileGridMap tileGridMap,
+            IBlocksProvider blocksProvider)
         {
             _instantiator = instantiator;
             _levelConfig = levelConfig;
@@ -44,8 +47,7 @@ namespace Project.Logic.LevelFactory
             _roundNumberConfigs = roundNumberConfigs;
             _blockColorConfig = blockColorConfig;
             _tileGridMap = tileGridMap;
-            
-            Blocks = new List<BlockMovement>();
+            _blocksProvider = blocksProvider;
         }
 
         public void CreatePlayer() =>
@@ -60,15 +62,12 @@ namespace Project.Logic.LevelFactory
             {
                 int number = GetRandomNumber(currentRound);
                 Tile emptyTile = _tileGridMap.GetRandomEmptyTile(_tileGridMap.Tiles.Length - 1);
-                BlockView block = _instantiator.InstantiatePrefabForComponent<BlockView>(_levelConfig.BlockPrefab, emptyTile.Position, Quaternion.identity, null);
+                BlockBehavior block = _instantiator.InstantiatePrefabForComponent<BlockBehavior>(_levelConfig.BlockPrefab, emptyTile.Position, Quaternion.identity, null);
                 
                 emptyTile.SetBusy();
-                block.Initialize(number, _blockColorConfig.GetColor(number));
-
-                var blockMovement = block.GetComponent<BlockMovement>();
-                blockMovement.Initialize(emptyTile.Row, emptyTile.Column);
+                block.Initialize(number, emptyTile.TileID, _blockColorConfig.GetColor(number));
+                _blocksProvider.AddBlock(block);
                 
-                Blocks.Add(blockMovement);
                 this.Log($"Created a block with number {number}");
             }
         }

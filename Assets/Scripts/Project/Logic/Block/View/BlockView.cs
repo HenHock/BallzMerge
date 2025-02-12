@@ -2,7 +2,7 @@
 using TMPro;
 using UnityEngine;
 
-namespace Project.Logic.Block
+namespace Project.Logic.Block.View
 {
     public class BlockView : MonoBehaviour
     {

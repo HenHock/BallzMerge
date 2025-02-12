@@ -43,9 +43,15 @@ namespace Project.Logic.Grid
             return sortedArray[Random.Range(0, sortedArray.Length - 1)];
         }
 
-        public Tile GetTile(TileID id) => Tiles[id.Row][id.Column];
+        public Tile GetTile(TileID id)
+        {
+            if (id.Row >= 0 && id.Row < Tiles.Length && id.Column >= 0 && id.Column < Tiles[id.Row].Length ) 
+                return Tiles[id.Row][id.Column];
 
-        public Tile GetNextTile(Tile tile, DirectionType directionType)
+            return null;
+        }
+
+        public Tile GetNextTile(TileID tile, DirectionType directionType)
         {
             (int Column, int Row) direction = _directions[directionType];
 
@@ -55,9 +61,6 @@ namespace Project.Logic.Grid
 
             int nextColumn = tile.Column + direction.Column;
             if (nextColumn < 0 || nextColumn >= Tiles[tile.Row].Length)
-                return null;
-
-            if (!Tiles[nextRow][nextColumn].IsEmpty)
                 return null;
             
             return Tiles[nextRow][nextColumn];

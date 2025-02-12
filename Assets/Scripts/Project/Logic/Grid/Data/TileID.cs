@@ -1,6 +1,8 @@
-﻿namespace Project.Logic.Grid.Data
+﻿using System;
+
+namespace Project.Logic.Grid.Data
 {
-    public struct TileID
+    public readonly struct TileID : IEquatable<TileID>
     {
         public int Row { get; }
         public int Column { get; }
@@ -10,5 +12,14 @@
             Row = row;
             Column = column;
         }
+
+        public bool Equals(TileID other) => 
+            Row == other.Row && Column == other.Column;
+
+        public override bool Equals(object obj) => 
+            obj is TileID other && Equals(other);
+
+        public override int GetHashCode() => 
+            HashCode.Combine(Row, Column);
     }
 }

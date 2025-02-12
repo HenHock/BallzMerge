@@ -4,6 +4,8 @@ using Project.Infrastructure.BootStateMachine.StateFactory;
 using Project.Infrastructure.Services.Input;
 using Project.Infrastructure.Services.SceneLoader;
 using Project.Logic.Aim;
+using Project.Logic.Block;
+using Project.Logic.BlockProvider;
 using Project.Logic.Grid;
 using Project.Logic.LevelFactory;
 using UnityEngine;
@@ -30,6 +32,7 @@ namespace Project.Infrastructure.Installers.Project
             BindLevelFactory();
             BindAimService();
             BindTileGridMap();
+            BindBlocksProvider();
 
             this.Log("Completed bind game services");
         }
@@ -60,6 +63,10 @@ namespace Project.Infrastructure.Installers.Project
 
         private void BindTileGridMap() => Container
             .BindInterfacesAndSelfTo<TileGridMap>()
+            .AsSingle();
+
+        private void BindBlocksProvider() => Container
+            .BindInterfacesAndSelfTo<BlocksProvider>()
             .AsSingle();
     }
 }

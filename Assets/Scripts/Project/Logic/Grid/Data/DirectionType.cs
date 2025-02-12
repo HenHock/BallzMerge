@@ -1,4 +1,4 @@
-﻿namespace Project.Logic.Grid
+﻿namespace Project.Logic.Grid.Data
 {
     public enum DirectionType
     {
