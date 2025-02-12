@@ -1,4 +1,5 @@
-﻿using Project.Logic.Grid;
+﻿using System.Runtime.CompilerServices;
+using Project.Logic.Grid;
 using Project.Logic.Block;
 using Project.Infrastructure.BootStateMachine.States.Interfaces;
 using Project.Logic.BlockProvider;

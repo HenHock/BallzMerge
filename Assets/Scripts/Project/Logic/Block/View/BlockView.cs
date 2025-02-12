@@ -26,5 +26,11 @@ namespace Project.Logic.Block.View
                 .SetEase(Ease.InOutExpo)
                 .Play();
         }
+
+        public void PlayDistroyTween() =>
+            transform.DOScale(Vector2.zero, 0.5f)
+                .SetEase(Ease.InBounce)
+                .OnComplete(() => Destroy(gameObject))
+                .Play();
     }
 }

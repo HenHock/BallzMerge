@@ -30,10 +30,8 @@ namespace Project.Logic.Block
             _tileGridMap.GetTile(_block.TileID).SetEmpty();
             _block.TileID = tile.TileID;
             tile.SetBusy();
-            
-            transform.DOMove(tile.Position, 0.5f)
-                .SetEase(Ease.OutCubic)
-                .Play();
+
+            MoveTo(tile.Position);
         }
 
         public void MoveTo(DirectionType direction)
@@ -54,5 +52,10 @@ namespace Project.Logic.Block
                 }
             }
         }
+
+        public void MoveTo(Vector2 endPoint) =>
+            transform.DOMove(endPoint, 0.5f)
+                .SetEase(Ease.OutCubic)
+                .Play();
     }
 }

@@ -14,7 +14,6 @@ namespace Project.Logic.BlockProvider
         public void AddBlock(BlockBehavior block) => _blocks.Add(block);
         
         public void RemoveBlock(BlockBehavior block) => _blocks.Remove(block);
-
         public BlockBehavior GetBlockOnTile(TileID tileID) => 
             _blocks.FirstOrDefault(block => block.TileID.Equals(tileID));
     }
