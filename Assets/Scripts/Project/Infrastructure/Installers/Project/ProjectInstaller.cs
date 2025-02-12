@@ -2,6 +2,8 @@ using Project.Extensions;
 using Project.Infrastructure.BootStateMachine;
 using Project.Infrastructure.BootStateMachine.StateFactory;
 using Project.Infrastructure.Services.Input;
+using Project.Infrastructure.Services.SaveSystem;
+using Project.Infrastructure.Services.SaveSystem.PersistentProgressService;
 using Project.Infrastructure.Services.SceneLoader;
 using Project.Logic.Aim;
 using Project.Logic.Block;
@@ -33,6 +35,8 @@ namespace Project.Infrastructure.Installers.Project
             BindAimService();
             BindTileGridMap();
             BindBlocksProvider();
+            BindSaveLoadService();
+            BindPersistentProgress();
 
             this.Log("Completed bind game services");
         }
@@ -67,6 +71,14 @@ namespace Project.Infrastructure.Installers.Project
 
         private void BindBlocksProvider() => Container
             .BindInterfacesAndSelfTo<BlocksProvider>()
+            .AsSingle();
+
+        private void BindSaveLoadService() => Container
+            .BindInterfacesAndSelfTo<SaveLoadService>()
+            .AsSingle();
+
+        private void BindPersistentProgress() => Container
+            .BindInterfacesAndSelfTo<PersistentProgressService>()
             .AsSingle();
     }
 }

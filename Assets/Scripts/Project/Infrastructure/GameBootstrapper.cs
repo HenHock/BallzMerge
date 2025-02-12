@@ -1,7 +1,9 @@
+using System;
 using Project.Extensions;
 using Project.Infrastructure.BootStateMachine;
 using Project.Infrastructure.BootStateMachine.StateFactory;
 using Project.Infrastructure.BootStateMachine.States;
+using Project.Infrastructure.Services.SaveSystem;
 using Zenject;
 using UnityEngine;
 using ILogger = Project.Infrastructure.Logger.ILogger;
@@ -30,6 +32,7 @@ namespace Project.Infrastructure
             DontDestroyOnLoad(this);
 
             _gameStateMachine.RegisterState(_stateFactory.Create<BootstrapState>());
+            _gameStateMachine.RegisterState(_stateFactory.Create<LoadGameSaveState>());
             _gameStateMachine.RegisterState(_stateFactory.Create<LoadGameSceneState>());
             _gameStateMachine.RegisterState(_stateFactory.Create<StartGameRoundState>());
             _gameStateMachine.RegisterState(_stateFactory.Create<LoopGameRoundState>());

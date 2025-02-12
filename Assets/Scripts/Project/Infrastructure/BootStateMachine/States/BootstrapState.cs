@@ -17,6 +17,6 @@ namespace Project.Infrastructure.BootStateMachine.States
             Next();
         }
 
-        public void Next() => _stateMachine.Enter<LoadGameSceneState>();
+        public void Next() => _stateMachine.Enter<LoadGameSaveState>();
     }
 }
