@@ -48,10 +48,6 @@ namespace Project.Infrastructure.BootStateMachine.States
             Next();
         }
 
-        private void CreateLevel()
-        {
-            _levelFactory.CreatePlayer();
-            _levelFactory.CreateBlocks();
-        }
+        private void CreateLevel() => _levelFactory.CreatePlayer();
     }
 }

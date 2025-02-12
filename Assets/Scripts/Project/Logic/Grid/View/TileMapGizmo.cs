@@ -26,18 +26,24 @@ namespace Project.Logic.Grid.View
 
         private void OnDrawGizmos()
         {
-            Gizmos.color = Color.yellow;
-            
             if (tileMapConfig != null && levelConfig != null)
             {
                 _tiles ??= TileMapGenerator.CreateMap(tileMapConfig, levelConfig.GridStartPoint);
 
-                foreach (Tile[] tiles in _tiles)
-                foreach (Tile tile in tiles)
+                foreach (Tile tile in _tiles[0])
                 {
+                    Gizmos.color = Color.red;
                     Gizmos.DrawCube(tile.Position, Vector2.one * 0.25f);
                     Gizmos.DrawWireCube(tile.Position, tileMapConfig.TileSize);
                 }
+                
+                for (var index = 1; index < _tiles.Length; index++)
+                    foreach (var tile in _tiles[index])
+                    {
+                        Gizmos.color = Color.yellow;
+                        Gizmos.DrawCube(tile.Position, Vector2.one * 0.25f);
+                        Gizmos.DrawWireCube(tile.Position, tileMapConfig.TileSize);
+                    }
             }
         }
 

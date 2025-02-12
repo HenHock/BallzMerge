@@ -19,11 +19,14 @@ namespace Project.Logic
         {
             if (other.IsPlayer())
             {
+                if (other.attachedRigidbody.velocity == Vector2.zero)
+                    return;
+                
                 other.attachedRigidbody
                     .GetComponent<IPlayerMovement>()
                     .StopMoving();
-                
-                _gameStateMachine.Enter<FinishGameRoundState>();                
+
+                _gameStateMachine.Enter<FinishGameRoundState>();         
             }
         }
     }

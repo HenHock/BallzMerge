@@ -389,7 +389,7 @@ Transform:
   m_GameObject: {fileID: 177308813}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.2, y: -7.25, z: 0}
+  m_LocalPosition: {x: -6.2, y: -9.7, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -477,7 +477,7 @@ LineRenderer:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 1
-        value: 0.038251363
+        value: 0.05
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -537,11 +537,11 @@ Transform:
   m_GameObject: {fileID: 253938732}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.7818282, y: -2.166123, z: 0}
-  m_LocalScale: {x: 0.19999999, y: 0.19999999, z: 0.19999999}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1505188841}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &253938736
 MonoBehaviour:
@@ -642,7 +642,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1318645902}
-  - {fileID: 1422744626}
   m_Father: {fileID: 1505188841}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &455826788
@@ -732,6 +731,7 @@ EdgeCollider2D:
   - {x: -6.2, y: 9.65}
   - {x: 6.2, y: 9.65}
   - {x: 6.2, y: -12}
+  - {x: -6.2, y: -12}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: -6.2, y: 9.65}
   m_UseAdjacentStartPoint: 0
@@ -747,8 +747,8 @@ GameObject:
   - component: {fileID: 1422744626}
   - component: {fileID: 1422744627}
   - component: {fileID: 1422744628}
-  m_Layer: 6
-  m_Name: BottomBorder
+  m_Layer: 0
+  m_Name: FinishRoundTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -762,12 +762,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1422744625}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 455826787}
+  m_Father: {fileID: 1505188841}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!68 &1422744627
 EdgeCollider2D:
@@ -854,7 +854,9 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 455826787}
+  - {fileID: 1422744626}
   - {fileID: 79161407}
+  - {fileID: 253938735}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
@@ -864,5 +866,4 @@ SceneRoots:
   - {fileID: 151890369}
   - {fileID: 2101617}
   - {fileID: 1505188841}
-  - {fileID: 253938735}
   - {fileID: 177308814}

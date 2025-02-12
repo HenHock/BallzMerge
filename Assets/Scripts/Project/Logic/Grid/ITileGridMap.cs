@@ -1,5 +1,4 @@
 ﻿using Project.Logic.Grid.Data;
-using UnityEngine;
 
 namespace Project.Logic.Grid
 {
@@ -8,5 +7,8 @@ namespace Project.Logic.Grid
         void Initialize();
         Tile[][] Tiles { get; }
         Tile GetRandomEmptyTile(int row);
+        Tile GetTile(TileID tileID);
+        Tile GetNextTile(Tile currentTile, DirectionType directionType);
+        bool IsCrossedLastRow();
     }
 }

@@ -21,7 +21,7 @@ namespace Project.Logic.LevelFactory
         public Color DefaultColor => Color.red;
         
         public Transform PlayerTransform { get; private set; }
-        public List<Transform> Blocks { get; private set; }
+        public List<BlockMovement> Blocks { get; private set; }
 
         private readonly LevelConfig _levelConfig;
         private readonly ITileGridMap _tileGridMap;
@@ -45,7 +45,7 @@ namespace Project.Logic.LevelFactory
             _blockColorConfig = blockColorConfig;
             _tileGridMap = tileGridMap;
             
-            Blocks = new List<Transform>();
+            Blocks = new List<BlockMovement>();
         }
 
         public void CreatePlayer() =>
@@ -65,7 +65,10 @@ namespace Project.Logic.LevelFactory
                 emptyTile.SetBusy();
                 block.Initialize(number, _blockColorConfig.GetColor(number));
 
-                Blocks.Add(block.transform);
+                var blockMovement = block.GetComponent<BlockMovement>();
+                blockMovement.Initialize(emptyTile.Row, emptyTile.Column);
+                
+                Blocks.Add(blockMovement);
                 this.Log($"Created a block with number {number}");
             }
         }

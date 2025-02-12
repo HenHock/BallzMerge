@@ -38,6 +38,18 @@ namespace Project.Extensions
         public static bool InRange(this Vector2Int source, int value) => 
             value >= source.x && value <= source.y;
 
+        public static (int, int) IndexOf<T>(this T[][] source, T element)
+        {
+            for (int i = 0; i < source.Length; i++)
+            {
+                int j = Array.IndexOf(source[i], element);
+                if (j != -1)
+                    return (i, j);
+            }
+
+            return (-1, -1);
+        }
+        
         public static void SetPositions(this LineRenderer source, Vector2[] points)
         {
             Vector3[] positions = points

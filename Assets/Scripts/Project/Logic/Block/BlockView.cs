@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using DG.Tweening;
+using TMPro;
 using UnityEngine;
 
 namespace Project.Logic.Block
@@ -12,6 +13,18 @@ namespace Project.Logic.Block
         {
             spriteRenderer.color = color;
             NumberTMP.text = number.ToString();
+
+            PlayAppearTween();
+        }
+
+        private void PlayAppearTween()
+        {
+            Vector2 scale = transform.localScale;
+            transform.localScale = Vector3.zero;
+            
+            transform.DOScale(scale, 0.5f)
+                .SetEase(Ease.InOutExpo)
+                .Play();
         }
     }
 }

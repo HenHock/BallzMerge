@@ -7,13 +7,13 @@ namespace Project.Logic.Grid.Generator
     {
         public static Tile[][] CreateMap(TileMapConfig tileMapConfig, Vector2 startPoint)
         {
-            var tiles = new Tile[tileMapConfig.MapSize.y][];
+            var tiles = new Tile[tileMapConfig.MapSize.y + 1][];
             
-            for (var row = 0; row < tileMapConfig.MapSize.y; row++)
+            for (var row = 0; row < tileMapConfig.MapSize.y + 1; row++)
             {
                 tiles[row] = new Tile[tileMapConfig.MapSize.x];
                 for (var column = 0; column < tileMapConfig.MapSize.x; column++)
-                    tiles[row][column] = new Tile(CalculatePosition(row, column, tileMapConfig, startPoint));
+                    tiles[row][column] = new Tile(row, column, CalculatePosition(row, column, tileMapConfig, startPoint));
             }
 
             return tiles;

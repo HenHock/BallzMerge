@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerPrefab: {fileID: 7961701403901111740, guid: df2c9e5a325f3ae4f8a51b2439344423, type: 3}
   PlayerSpawnPosition: {x: 0, y: -11}
-  GridStartPoint: {x: -6.2, y: -7.25}
+  GridStartPoint: {x: -6.2, y: -9.7}
   BlockPrefab: {fileID: 5681968701946311538, guid: a905f696de6225a4c9d12de987c0c564, type: 3}

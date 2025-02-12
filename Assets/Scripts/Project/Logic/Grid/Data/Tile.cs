@@ -4,12 +4,16 @@ namespace Project.Logic.Grid.Data
 {
     public class Tile
     {
-        public Vector2 Position { get; private set; }
+        public int Row { get; private set; }
+        public int Column { get; private set; }
         
+        public Vector2 Position { get; private set; }
         public bool IsEmpty { get; private set;}
 
-        public Tile(Vector2 position)
+        public Tile(int row, int column, Vector2 position)
         {
+            Row = row;
+            Column = column;
             IsEmpty = true;
             Position = position;
         }

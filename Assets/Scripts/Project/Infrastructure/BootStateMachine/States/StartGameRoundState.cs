@@ -13,11 +13,12 @@ namespace Project.Infrastructure.BootStateMachine.States
         private readonly IInputService _inputService;
         private readonly IGameStateMachine _stateMachine;
 
-        public StartGameRoundState(IGameStateMachine stateMachine, IInputService inputService, IAimService aimService)
+        public StartGameRoundState(IGameStateMachine stateMachine, IInputService inputService, IAimService aimService, LevelFactory levelFactory)
         {
             _stateMachine = stateMachine;
             _inputService = inputService;
             _aimService = aimService;
+            _levelFactory = levelFactory;
 
             Initialize();
         }
@@ -28,6 +29,7 @@ namespace Project.Infrastructure.BootStateMachine.States
 
         public void Enter()
         {
+            _levelFactory.CreateBlocks();
             _inputService.EnableInputs();
             _aimService.SetEnable(true);
         }

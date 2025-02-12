@@ -34,6 +34,7 @@ namespace Project.Infrastructure
             _gameStateMachine.RegisterState(_stateFactory.Create<StartGameRoundState>());
             _gameStateMachine.RegisterState(_stateFactory.Create<LoopGameRoundState>());
             _gameStateMachine.RegisterState(_stateFactory.Create<FinishGameRoundState>());
+            _gameStateMachine.RegisterState(_stateFactory.Create<GameOverState>());
 
             this.Log("Initialized GameStateMachine");
 
