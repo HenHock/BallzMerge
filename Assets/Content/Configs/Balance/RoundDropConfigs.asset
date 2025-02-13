@@ -20,3 +20,11 @@ MonoBehaviour:
       Chance: 0.6
     - Number: 2
       Chance: 0.4
+  - RoundRange: {x: 6, y: 10}
+    DropData:
+    - Number: 1
+      Chance: 0.4
+    - Number: 2
+      Chance: 0.4
+    - Number: 3
+      Chance: 0.2

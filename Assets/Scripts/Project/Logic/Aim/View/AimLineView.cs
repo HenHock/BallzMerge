@@ -17,14 +17,25 @@ namespace Project.Logic.Aim.View
 
         private void Start()
         {
-            lineRenderer.positionCount = 3;
+            lineRenderer.positionCount = 0;
             
             _aimService.OnEnabledStatusChanged
-                .Subscribe(isEnabled => gameObject.SetActive(isEnabled))
+                .Subscribe(HandleEnableStatusChanged)
+                .AddTo(this);
+
+            _aimService.OnStartAiming
+                .Subscribe(_ => lineRenderer.positionCount = 3)
                 .AddTo(this);
         }
 
         private void Update() => 
             lineRenderer.SetPositions(_aimService.CalculateAimPoints());
+
+        private void HandleEnableStatusChanged(bool isEnabled)
+        {
+            gameObject.SetActive(isEnabled);
+            if (!isEnabled) 
+                lineRenderer.positionCount = 0;
+        }
     }
 }

@@ -10,5 +10,6 @@ namespace Project.Logic.Aim
         void SetEnable(bool isEnabled);
         ReactiveCommand<bool> OnEnabledStatusChanged { get; }
         bool IsEnabled { get; }
+        ReactiveCommand OnStartAiming { get; }
     }
 }

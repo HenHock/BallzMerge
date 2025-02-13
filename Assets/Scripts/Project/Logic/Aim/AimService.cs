@@ -2,6 +2,7 @@
 using Project.Infrastructure.Services.Input;
 using Project.Logic.Aim.Data;
 using Project.Services.LevelFactory;
+using Project.StaticData;
 using UniRx;
 using UnityEngine;
 using Zenject;
@@ -11,13 +12,15 @@ namespace Project.Logic.Aim
     public class AimService : IAimService
     {
         public bool IsEnabled { get; private set; }
+        public ReactiveCommand OnStartAiming { get; } = new();
         public ReactiveCommand<bool> OnEnabledStatusChanged { get; } = new();
 
+        private readonly AimConfig _aimConfig;
         private readonly IInputService _inputService;
         private readonly ILevelFactory _levelFactory;
-        private readonly AimConfig _aimConfig;
 
         private Camera _camera;
+        private Vector2 _cachedAimPosition;
 
         public AimService(IInputService inputService, ILevelFactory levelFactory, AimConfig aimConfig)
         {
@@ -34,6 +37,16 @@ namespace Project.Logic.Aim
         public void SetEnable(bool isEnabled)
         {
             IsEnabled = isEnabled;
+            _cachedAimPosition = _inputService.MousePosition;
+
+            if (isEnabled)
+            {
+                Observable.EveryUpdate()
+                    .Where(_ => _cachedAimPosition != _inputService.MousePosition)
+                    .Take(1)
+                    .Subscribe(_ => OnStartAiming?.Execute());
+            }
+
             OnEnabledStatusChanged?.Execute(isEnabled);
         }
 
@@ -44,11 +57,11 @@ namespace Project.Logic.Aim
             Vector2 endPoint = startPoint + direction * _aimConfig.MaxDistance;
             Vector2 middlePoint = endPoint;
 
-            RaycastHit2D raycastHit2D = Physics2D.CircleCast(startPoint, 0.5f, direction, _aimConfig.MaxDistance, _aimConfig.HitLayerMask);
+            RaycastHit2D raycastHit2D = Physics2D.CircleCast(startPoint, Constants.PlayerColliderRadius, direction, _aimConfig.MaxDistance, _aimConfig.HitLayerMask);
             if (raycastHit2D.transform != null)
             {
                 middlePoint = raycastHit2D.point;
-                endPoint = middlePoint + MathExtensions.CalculateReflectDirection( startPoint, middlePoint) * _aimConfig.MaxDistance / 2;
+                endPoint = middlePoint + MathExtensions.CalculateReflectDirection(startPoint, middlePoint) * _aimConfig.MaxDistance / 2;
             }
 
             return new[] { startPoint, middlePoint, endPoint };

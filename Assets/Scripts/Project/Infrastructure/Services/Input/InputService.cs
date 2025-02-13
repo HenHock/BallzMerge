@@ -6,8 +6,8 @@ namespace Project.Infrastructure.Services.Input
 {
     public sealed class InputService : IInputService
     {
-        public Vector2 MousePosition => _gameInputActions.Mouse.Position.ReadValue<Vector2>();
         public ReactiveCommand<Vector2> OnClick { get; }
+        public Vector2 MousePosition => _gameInputActions.Mouse.Position.ReadValue<Vector2>();
 
         private readonly GameInputActions _gameInputActions;
         

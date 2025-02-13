@@ -60,7 +60,7 @@ namespace Project.Logic.Block
                 if (tile?.IsEmpty == false)
                 {
                     BlockBehavior blockOnTile = _blocksProvider.GetBlockOnTile(tile.TileID);
-                    if (blockOnTile?.Number == Number)
+                    if (blockOnTile?.Number == Number && !blockOnTile.IsDead)
                     {
                         MergeWith(blockOnTile);
                         blockOnTile.MergeWith(this);
