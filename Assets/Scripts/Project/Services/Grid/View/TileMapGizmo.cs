@@ -9,6 +9,7 @@ namespace Project.Services.Grid.View
 {
     public class TileMapGizmo : MonoBehaviour
     {
+#if UNITY_EDITOR
         [Expandable]
         [SerializeField] private TileMapConfig tileMapConfig;
         
@@ -50,5 +51,6 @@ namespace Project.Services.Grid.View
         [Button]
         private void Recalculate() => 
             _tiles = TileMapGenerator.CreateMap(tileMapConfig, levelConfig.GridStartPoint);
+#endif
     }
 }

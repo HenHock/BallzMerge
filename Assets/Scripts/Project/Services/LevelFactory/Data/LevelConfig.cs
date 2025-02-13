@@ -18,6 +18,7 @@ namespace Project.Services.LevelFactory.Data
         [BoxGroup("Block")]
         public GameObject BlockPrefab;
 
+#if UNITY_EDITOR
         [Button]
         private void Fill()
         {
@@ -25,5 +26,6 @@ namespace Project.Services.LevelFactory.Data
                 .FirstOrDefault(point => point.PointType == SpawnPointType.Player)?
                 .transform.position ?? Vector3.zero;
         }
+#endif
     }
 }
